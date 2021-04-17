@@ -11,6 +11,7 @@ loguru = "^0.5.3"
 requests = "^2.25.1"
 aiohttp = "^3.7.4"
 aiofile = "^3.5.0"
+aiofiles = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

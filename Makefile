@@ -51,7 +51,7 @@ update: env
 
 .PHONY: format
 format: env
-	isort -rc --multi-line=3 .
+	isort --multi-line=3 .
 	black .
 
 

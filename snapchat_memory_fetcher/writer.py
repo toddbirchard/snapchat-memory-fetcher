@@ -1,3 +1,4 @@
+"""Write decoded media URLs to local JSON."""
 from typing import List
 
 import simplejson as json
@@ -14,7 +15,7 @@ def write_decoded_urls(decoded_urls: List[dict], media_type: str):
     :param media_type: Type of media that URLs were generated for.
     :type media_type: str
     """
-    filepath = f"{basedir}/output/{media_type}.json"
+    filepath = f"{basedir}/urls/{media_type}.json"
     with open(filepath, "w") as f:
         json.dump(
             decoded_urls,

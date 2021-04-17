@@ -1,38 +1,35 @@
-"""Parse exported Snapchat dump for encoded memory URLs."""
+"""Parse `Snapchat Memories` URLs from exported Snapchat data dump."""
 from typing import Dict, List
 
 from config import SNAPCHAT_MEMORIES_JSON
 from log import LOGGER
 
 
-def parse_encoded_memories() -> Dict[str, List[Dict[str, str]]]:
+def collect_encoded_urls(media_type: str) -> List[Dict[str, str]]:
     """
-    Filter and return saved Snapchat memories.
+    Parse `Snapchat memories` URLs into convenient dictionary for a given data type.
 
-    :return: Dict[str, List[Dict[str, str]]]
+    :param media_type: Resource URLs to fetch (either photos or videos).
+    :type media_type: str
+    :return: List[Dict[str, str]]
     """
-    videos = [
-        create_memory_pair(m)
+    encoded_urls = [
+        create_url_pair(m)
         for m in SNAPCHAT_MEMORIES_JSON
-        if m["Media Type"] == "VIDEO"
-    ]
-    photos = [
-        create_memory_pair(m)
-        for m in SNAPCHAT_MEMORIES_JSON
-        if m["Media Type"] == "PHOTO"
+        if m["Media Type"] == media_type.upper().replace("S", "")
     ]
     LOGGER.success(
-        f"Found {len(videos)} videos and {len(photos)} photos from saved Snapchat memories."
+        f"Found {len(encoded_urls)} {media_type} from Snapchat export export."
     )
-    return {"videos": videos, "photos": photos}
+    return encoded_urls
 
 
-def create_memory_pair(memory: Dict[str, str]):
+def create_url_pair(memory: Dict[str, str]):
     """
-    Create a dictionary containing the URL and date of a single memory.
+    Create a dictionary containing the URL and date of a single `Snapchat Memory`.
 
-    :param memory: Dictionary containing data for a single Snapchat memory.
+    :param memory: Dictionary of encoded media URLs.
     :type memory: Dict[str, str]
     :return: Dict[str, str]
     """
-    return {"date": memory["Date"].split(" ")[0], "url": memory["Download Link"]}
+    return {"date": memory["Date"].replace(" ", "T"), "url": memory["Download Link"]}

@@ -128,9 +128,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Personal data
+# Personal export
 data/
-output/*
+urls/*
+memories/
+export
 
 # MacOS
 .DS_Store
