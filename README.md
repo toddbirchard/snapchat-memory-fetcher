@@ -25,15 +25,24 @@ Snapchat's practice of intentionally complicating this process is of questionabl
 ### Requesting your data
 
 1. User data can be requested from Snapchat [here](https://accounts.snapchat.com/accounts/welcome).
-2. Under **Manage My Account**, select  *My Data*
-3. Your data export will be emailed to you as a `zip` file containing two directories (`/html` and `/json`) and a single HTML file (`index.html`)
+2. Under **Manage My Account**, select  *My Data*.
+3. Your data export will be emailed to you as a **.zip** file containing the following:
+
+```shell
+/mydata_1618592678039
+├── index.html
+├── /html
+│   └── *.html
+└── /json
+    └── *.json
+```
 
 ### Running this script
 
-1. Clone this repo (`git clone https://github.com/toddbirchard/snapchat-memory-fetcher.git`)
+1. Clone this repo (`git clone https://github.com/toddbirchard/snapchat-memory-fetcher.git`).
 2. Drop the contents of your export to the `/export` directory of this repo.
 3. Initialize project with requirements via  `make install`.
-4. Run script via `make run`
+4. Run script via `make run`.
 
 ### Result
 
