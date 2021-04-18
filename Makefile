@@ -5,7 +5,7 @@ define HELP
 Manage Snapchat Memory Fetcher. Usage:
 
 make run        - Run $(PROJECTNAME).
-make install     - Pull latest build and deploy to production.
+make install    - Pull latest build and deploy to production.
 make update     - Update pip dependencies via Python Poetry.
 make format     - Format code with Python's `Black` library.
 make lint       - Check code formatting with flake8
@@ -76,4 +76,5 @@ clean:
 	find . -wholename '**/.pytest_cache' -delete
 	find . -wholename '*/logs/*.json' -delete
 	find . -wholename '.webassets-cache/*' -delete
+	find . -wholename '.urls/*json' -delete
 	find . -wholename '**/logs' -delete

@@ -1,18 +1,4 @@
 [[package]]
-name = "aiofile"
-version = "3.5.0"
-description = "Asynchronous file operations."
-category = "main"
-optional = false
-python-versions = ">3.4.*, <4"
-
-[package.dependencies]
-caio = ">=0.8.0,<0.9.0"
-
-[package.extras]
-develop = ["aiomisc", "asynctest", "pytest", "pytest-cov"]
-
-[[package]]
 name = "aiofiles"
 version = "0.6.0"
 description = "File support for asyncio."
@@ -54,6 +40,14 @@ description = "Timeout context manager for asyncio programs"
 category = "main"
 optional = false
 python-versions = ">=3.5.3"
+
+[[package]]
+name = "asyncio"
+version = "3.4.3"
+description = "reference implementation of PEP 3156"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "atomicwrites"
@@ -100,25 +94,6 @@ colorama = ["colorama (>=0.4.3)"]
 d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
 
 [[package]]
-name = "caio"
-version = "0.8.0"
-description = "Asynchronous file IO for Linux Posix and Windows."
-category = "main"
-optional = false
-python-versions = ">=3.5.*, <4"
-
-[package.extras]
-develop = ["aiomisc", "pytest", "pytest-cov"]
-
-[[package]]
-name = "certifi"
-version = "2020.12.5"
-description = "Python package for providing Mozilla's CA Bundle."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "chardet"
 version = "4.0.0"
 description = "Universal encoding detector for Python 2 and 3"
@@ -157,11 +132,11 @@ pyflakes = ">=2.3.0,<2.4.0"
 
 [[package]]
 name = "idna"
-version = "2.10"
+version = "3.1"
 description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.4"
 
 [[package]]
 name = "iniconfig"
@@ -344,24 +319,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "requests"
-version = "2.25.1"
-description = "Python HTTP for Humans."
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.dependencies]
-certifi = ">=2017.4.17"
-chardet = ">=3.0.2,<5"
-idna = ">=2.5,<3"
-urllib3 = ">=1.21.1,<1.27"
-
-[package.extras]
-security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
-socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
-
-[[package]]
 name = "simplejson"
 version = "3.17.2"
 description = "Simple, fast, extensible JSON encoder/decoder for Python"
@@ -394,19 +351,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "urllib3"
-version = "1.26.4"
-description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
-
-[package.extras]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
-socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
-brotli = ["brotlipy (>=0.6.0)"]
-
-[[package]]
 name = "win32-setctime"
 version = "1.0.3"
 description = "A small Python utility to set file creation time on Windows"
@@ -432,13 +376,9 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f4555ef8ba37c4f612216f4cdb1bd4b512296fae21bd15ac9dfa65502b17170b"
+content-hash = "8966a5ac213e0c4a1822cb7d05a99687f6014e96404be3a1bc5daa7af0240f70"
 
 [metadata.files]
-aiofile = [
-    {file = "aiofile-3.5.0-py3-none-any.whl", hash = "sha256:5e7287a33b498bfa418aac1caa0be7b2ad32ec49680ec22f537335d95002de0a"},
-    {file = "aiofile-3.5.0.tar.gz", hash = "sha256:cc9fb394e8c0ad1d2b9014a9b4bdaa3535f098c5881bd3ba220350b198c12727"},
-]
 aiofiles = [
     {file = "aiofiles-0.6.0-py3-none-any.whl", hash = "sha256:bd3019af67f83b739f8e4053c6c0512a7f545b9a8d91aaeab55e6e0f9d123c27"},
     {file = "aiofiles-0.6.0.tar.gz", hash = "sha256:e0281b157d3d5d59d803e3f4557dcc9a3dff28a4dd4829a9ff478adae50ca092"},
@@ -490,6 +430,12 @@ async-timeout = [
     {file = "async-timeout-3.0.1.tar.gz", hash = "sha256:0c3c816a028d47f659d6ff5c745cb2acf1f966da1fe5c19c77a70282b25f4c5f"},
     {file = "async_timeout-3.0.1-py3-none-any.whl", hash = "sha256:4291ca197d287d274d0b6cb5d6f8f8f82d434ed288f962539ff18cc9012f9ea3"},
 ]
+asyncio = [
+    {file = "asyncio-3.4.3-cp33-none-win32.whl", hash = "sha256:b62c9157d36187eca799c378e572c969f0da87cd5fc42ca372d92cdb06e7e1de"},
+    {file = "asyncio-3.4.3-cp33-none-win_amd64.whl", hash = "sha256:c46a87b48213d7464f22d9a497b9eef8c1928b68320a2fa94240f969f6fec08c"},
+    {file = "asyncio-3.4.3-py3-none-any.whl", hash = "sha256:c4d18b22701821de07bd6aea8b53d21449ec0ec5680645e5317062ea21817d2d"},
+    {file = "asyncio-3.4.3.tar.gz", hash = "sha256:83360ff8bc97980e4ff25c964c7bd3923d333d177aa4f7fb736b019f26c7cb41"},
+]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
     {file = "atomicwrites-1.4.0.tar.gz", hash = "sha256:ae70396ad1a434f9c7046fd2dd196fc04b12f9e91ffb859164193be8b6168a7a"},
@@ -500,22 +446,6 @@ attrs = [
 ]
 black = [
     {file = "black-20.8b1.tar.gz", hash = "sha256:1c02557aa099101b9d21496f8a914e9ed2222ef70336404eeeac8edba836fbea"},
-]
-caio = [
-    {file = "caio-0.8.0-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:12c9354954cced5c86eda101685d3d0b5656bbd50b9293604b68150ce32fb5db"},
-    {file = "caio-0.8.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:86dd1076008afa2665e30cf6be3fee3d53b88601abfd7e730b5954b4e64fac40"},
-    {file = "caio-0.8.0-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:d35b423f178daddff2481594b94d66b1e06afd9f26629eec034f3ae0c950b312"},
-    {file = "caio-0.8.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:1f1d2a41ad67fb6e9af4d89c40056df370b338f0cc6ca1b3d2f7a85675beaab7"},
-    {file = "caio-0.8.0-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:c302fe7c417ce2cc1c6c34ebb4b46220592068a14a1e324c8016f19d74b4d7ed"},
-    {file = "caio-0.8.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:d45361b84edc74868e46d5bf34a2879f69b1d278e60922f9b98ab2962a593f03"},
-    {file = "caio-0.8.0-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:601b219fe167c2aeb74bf91f1ca7a4d0fc0ba63767cee79f9a1c14c679e11fdf"},
-    {file = "caio-0.8.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:b1b163d2603a7001ac39f00c2dfaf0e9fff56d3fa2553b708e9bb0fc39ac9432"},
-    {file = "caio-0.8.0-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:ae54d0e409732882448ae9a730151acba9ac4cb536d03cbfd77114587cb858f7"},
-    {file = "caio-0.8.0.tar.gz", hash = "sha256:87655ee2510ef6f0e9bf0b5cd77fc04a79236ac0259a9739e75622fa2fd1b674"},
-]
-certifi = [
-    {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
-    {file = "certifi-2020.12.5.tar.gz", hash = "sha256:1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"},
 ]
 chardet = [
     {file = "chardet-4.0.0-py2.py3-none-any.whl", hash = "sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5"},
@@ -534,8 +464,8 @@ flake8 = [
     {file = "flake8-3.9.1.tar.gz", hash = "sha256:1aa8990be1e689d96c745c5682b687ea49f2e05a443aff1f8251092b0014e378"},
 ]
 idna = [
-    {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
-    {file = "idna-2.10.tar.gz", hash = "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"},
+    {file = "idna-3.1-py3-none-any.whl", hash = "sha256:5205d03e7bcbb919cc9c19885f9920d622ca52448306f2377daede5cf3faac16"},
+    {file = "idna-3.1.tar.gz", hash = "sha256:c5b02147e01ea9920e6b0a3f1f7bb833612d507592c837a6c49552768f4054e1"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
@@ -699,10 +629,6 @@ regex = [
     {file = "regex-2021.4.4-cp39-cp39-win_amd64.whl", hash = "sha256:97f29f57d5b84e73fbaf99ab3e26134e6687348e95ef6b48cfd2c06807005a07"},
     {file = "regex-2021.4.4.tar.gz", hash = "sha256:52ba3d3f9b942c49d7e4bc105bb28551c44065f139a65062ab7912bef10c9afb"},
 ]
-requests = [
-    {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
-    {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
-]
 simplejson = [
     {file = "simplejson-3.17.2-cp27-cp27m-macosx_10_13_x86_64.whl", hash = "sha256:2d3eab2c3fe52007d703a26f71cf649a8c771fcdd949a3ae73041ba6797cfcf8"},
     {file = "simplejson-3.17.2-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:813846738277729d7db71b82176204abc7fdae2f566e2d9fcf874f9b6472e3e6"},
@@ -790,10 +716,6 @@ typing-extensions = [
     {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
     {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
     {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
-]
-urllib3 = [
-    {file = "urllib3-1.26.4-py2.py3-none-any.whl", hash = "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"},
-    {file = "urllib3-1.26.4.tar.gz", hash = "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"},
 ]
 win32-setctime = [
     {file = "win32_setctime-1.0.3-py3-none-any.whl", hash = "sha256:dc925662de0a6eb987f0b01f599c01a8236cb8c62831c22d9cada09ad958243e"},
