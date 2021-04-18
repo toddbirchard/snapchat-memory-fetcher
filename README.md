@@ -37,6 +37,10 @@ Snapchat's practice of intentionally complicating this process is of questionabl
     └── *.json
 ```
 
+You can explore your exported data via the `index.html` page:
+
+![index.html](https://github.com/toddbirchard/snapchat-memory-fetcher/blob/master/.github/snapchat_data_export@2x.png?raw=true)
+
 ### Running this script
 
 1. Clone this repo (`git clone https://github.com/toddbirchard/snapchat-memory-fetcher.git`).
