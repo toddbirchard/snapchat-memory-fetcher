@@ -2,7 +2,7 @@
 import asyncio
 from typing import Dict, List
 
-from aiohttp import ClientSession
+from aiohttp import ClientError, ClientSession, InvalidURL
 
 from log import LOGGER
 
@@ -79,8 +79,22 @@ async def fetch_decoded_url(
     :param media_type: Type of media urls to generate.
     :type media_type: str
     """
-    async with session.post(media_source["url"]) as response:
-        url = await response.text()
-        resource = {"url": url, "date": media_source["date"]}
-        LOGGER.info(f"Decoded {count} of {total_count} {media_type}: {url}")
-        return resource
+    try:
+        async with session.post(media_source["url"]) as response:
+            decoded_url = await response.text()
+            if decoded_url is "":
+                raise Exception(
+                    f"Decoded URL returned empty string; export may have expired."
+                )
+            resource = {"url": decoded_url, "date": media_source["date"]}
+            LOGGER.info(f"Decoded {count} of {total_count} {media_type}: {decoded_url}")
+            return resource
+    except InvalidURL as e:
+        LOGGER.error(f"Unable to decode invalid URL `{media_source['date']}`: {e}")
+        raise e
+    except ClientError as e:
+        LOGGER.error(f"Error while decoding URL `{media_source['date']}`: {e}")
+        raise e
+    except Exception as e:
+        LOGGER.error(f"Unexpected error: {e}")
+        raise e

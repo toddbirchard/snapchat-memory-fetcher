@@ -1,11 +1,12 @@
 """Fetch `Snapchat Memories` media files and save to local drive."""
 import asyncio
+from os import mkdir, path
 from typing import Dict, List
 
 import aiofiles
-from aiohttp import ClientSession
+from aiohttp import ClientError, ClientSession, InvalidURL
 
-from config import basedir
+from config import MEDIA_EXPORT_FILEPATH
 from log import LOGGER
 
 
@@ -18,6 +19,8 @@ def fetch_snapchat_memories(decoded_memories: List[Dict[str, str]], media_type: 
     :param media_type: Type of media to fetch (photo or video).
     :type media_type: str
     """
+    if path.exists(f"{MEDIA_EXPORT_FILEPATH}/{media_type}") is False:
+        mkdir(f"{MEDIA_EXPORT_FILEPATH}/{media_type}")
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run(decoded_memories, media_type))
     LOGGER.success(f"Completed downloading {len(decoded_memories)} {media_type}.")
@@ -84,15 +87,22 @@ async def fetch_snapchat_memory(
     :type media_type: str
     """
     if media_type == "photos":
-        filepath = f"{basedir}/downloads/{media_type}/{memory['date']}.jpg"
+        filepath = f"{MEDIA_EXPORT_FILEPATH}/{media_type}/{memory['date']}.jpg"
     else:
-        filepath = f"{basedir}/downloads/{media_type}/{memory['date']}.mp4"
-    async with session.get(memory["url"]) as response:
-        if response.status == 200:
-            data = await response.read()
-            async with aiofiles.open(filepath, mode="wb") as f:
-                await f.write(data)
-                LOGGER.info(
-                    f"Fetched {media_type} {count} of {total_count}: {memory['date']}"
-                )
-                await f.close()
+        filepath = f"{MEDIA_EXPORT_FILEPATH}/{media_type}/{memory['date']}.mp4"
+    try:
+        async with session.get(memory["url"]) as response:
+            if response.status == 200:
+                data = await response.read()
+                async with aiofiles.open(filepath, mode="wb+") as f:
+                    await f.write(data)
+                    LOGGER.info(
+                        f"Fetched {media_type} {count} of {total_count}: {memory['date']}"
+                    )
+                    await f.close()
+    except InvalidURL as e:
+        LOGGER.error(f"Unable to decode invalid URL `{memory['url']}`: {e}")
+    except ClientError as e:
+        LOGGER.error(f"Error while decoding URL `{memory['url']}`: {e}")
+    except Exception as e:
+        LOGGER.error(f"Unexpected error while decoding URL `{memory['url']}`: {e}")

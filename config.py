@@ -1,30 +1,36 @@
-"""Project configuration."""
+"""Fetcher configuration."""
 from os import path
 
 import simplejson as json
 
+from log import LOGGER
+
 # Set project base path
-basedir = path.abspath(path.dirname(__file__))
+BASE_DIR = path.abspath(path.dirname(__file__))
 
-# Location of Snapchat data dump (exported from https://accounts.snapchat.com/accounts/welcome)
-SNAPCHAT_MEMORIES_JSON = json.loads(
-    open(f"{basedir}/export/json/memories_history.json").read()
-)["Saved Media"]
+# Location of Snapchat data dump from https://accounts.snapchat.com/accounts/welcome
+if path.exists(f"{BASE_DIR}/export/json/memories_history.json"):
+    SNAPCHAT_MEMORIES_JSON = json.loads(
+        open(f"{BASE_DIR}/export/json/memories_history.json").read()
+    )["Saved Media"]
+else:
+    LOGGER.error(f"Snapchat data not found in `/export` folder.")
+    raise Exception(f"Snapchat data not found in `/export` folder.")
 
-# Checks if URLs have been fetched/decoded from previous runs
-SNAPCHAT_DECODED_PHOTO_URLS = None
-if path.exists(f"{basedir}/urls/photos.json"):
-    photo_urls = json.loads(open(f"{basedir}/urls/photos.json").read())
-    if photo_urls is not None and len(photo_urls) > 0:
-        SNAPCHAT_DECODED_PHOTO_URLS = photo_urls
-
-SNAPCHAT_DECODED_VIDEO_URLS = None
-if path.exists(f"{basedir}/urls/videos.json"):
-    video_urls = json.loads(open(f"{basedir}/urls/videos.json").read())
-    if video_urls is not None and len(video_urls) > 0:
-        SNAPCHAT_DECODED_VIDEO_URLS = video_urls
-
-SNAPCHAT_MEDIA_URLS = {
-    "videos": SNAPCHAT_DECODED_VIDEO_URLS,
-    "photos": SNAPCHAT_DECODED_PHOTO_URLS,
+# Check if media URLs have been decoded and saved from a previous run
+SNAPCHAT_DECODED_MEMORIES_JSON = {
+    "videos": None,
+    "photos": None,
 }
+
+for k, v in SNAPCHAT_DECODED_MEMORIES_JSON.items():
+    if path.exists(f"{BASE_DIR}/urls/{k}.json"):
+        decoded_urls = json.loads(open(f"{BASE_DIR}/urls/{k}.json").read())
+        if decoded_urls is not None and len(decoded_urls) > 0:
+            SNAPCHAT_DECODED_MEMORIES_JSON[k] = decoded_urls
+
+
+# Destination for fetched media files
+MEDIA_EXPORT_FILEPATH = f"{BASE_DIR}/downloads"
+if path.exists(MEDIA_EXPORT_FILEPATH) is False:
+    raise Exception(f"Define a valid filepath for exported Snapchat memories.")
