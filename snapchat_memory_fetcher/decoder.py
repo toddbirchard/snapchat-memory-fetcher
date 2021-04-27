@@ -7,7 +7,9 @@ from aiohttp import ClientError, ClientSession, InvalidURL
 from log import LOGGER
 
 
-def decode_urls(encoded_urls: List[Dict[str, str]], media_type: str):
+def decode_urls(
+    encoded_urls: List[Dict[str, str]], media_type: str
+) -> List[Dict[str, str]]:
     """
     Decode video and photo URLs.
 
@@ -15,6 +17,7 @@ def decode_urls(encoded_urls: List[Dict[str, str]], media_type: str):
     :type encoded_urls: List[Dict[str, str]]
     :param media_type: Resource URLs to fetch.
     :type media_type: str
+    :returns: List[Dict[str, str]]
     """
     loop = asyncio.get_event_loop()
     urls = loop.run_until_complete(run(encoded_urls, media_type))
@@ -22,7 +25,7 @@ def decode_urls(encoded_urls: List[Dict[str, str]], media_type: str):
     return urls
 
 
-async def run(encoded_urls: List[Dict[str, str]], media_type):
+async def run(encoded_urls: List[Dict[str, str]], media_type) -> List[dict]:
     """
     Create async HTTP session and decode all URLs.
 
@@ -41,21 +44,24 @@ async def run(encoded_urls: List[Dict[str, str]], media_type):
         return decoded_urls
 
 
-async def fetch_all(session, media_sources, media_type):
+async def fetch_all(
+    session: ClientSession, media_urls: List[Dict[str, str]], media_type: str
+) -> List[Dict[str, str]]:
     """
     Asynchronously decode all URLs.
 
     :param session: Async HTTP requests session.
     :type session: ClientSession
-    :param media_sources: Resource URLs to fetch.
-    :type media_sources: List[Dict[str, str]]
+    :param media_urls: Resource URLs to fetch.
+    :type media_urls: List[Dict[str, str]]
     :param media_type: Type of media urls to generate.
     :type media_type: str
+    :returns: List[Dict[str, str]]
     """
     tasks = []
-    for i, media_source in enumerate(media_sources):
+    for i, media_source in enumerate(media_urls):
         task = asyncio.create_task(
-            fetch_decoded_url(session, media_source, i, len(media_sources), media_type)
+            fetch_decoded_url(session, media_source, i, len(media_urls), media_type)
         )
         tasks.append(task)
     results = await asyncio.gather(*tasks)
@@ -63,8 +69,8 @@ async def fetch_all(session, media_sources, media_type):
 
 
 async def fetch_decoded_url(
-    session, media_source: dict, count: int, total_count: int, media_type: str
-):
+    session, media_source: Dict[str, str], count: int, total_count: int, media_type: str
+) -> Dict[str, str]:
     """
     Fetch URL and create a dictionary representing the resource.
 
@@ -78,11 +84,12 @@ async def fetch_decoded_url(
     :type total_count: int
     :param media_type: Type of media urls to generate.
     :type media_type: str
+    :returns: Dict[str, str]
     """
     try:
         async with session.post(media_source["url"]) as response:
             decoded_url = await response.text()
-            if decoded_url is "":
+            if decoded_url == "":
                 raise Exception(
                     f"Decoded URL returned empty string; export may have expired."
                 )

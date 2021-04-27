@@ -6,9 +6,9 @@ import simplejson as json
 from config import BASE_DIR
 
 
-def write_decoded_urls(decoded_urls: List[dict], media_type: str):
+def save_decoded_media_urls(decoded_urls: List[dict], media_type: str):
     """
-    Write results to local JSON file.
+    Write decoded URLs to a local JSON file for future use.
 
     :param decoded_urls: List of decoded URLs.
     :type decoded_urls: List[dict]

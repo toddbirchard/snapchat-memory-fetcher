@@ -5,7 +5,7 @@ from config import SNAPCHAT_MEMORIES_JSON
 from log import LOGGER
 
 
-def collect_encoded_urls(media_type: str) -> List[Dict[str, str]]:
+def parse_urls_from_export(media_type: str) -> List[Dict[str, str]]:
     """
     Parse `Snapchat memories` URLs into convenient dictionary for a given data type.
 
@@ -27,7 +27,7 @@ def collect_encoded_urls(media_type: str) -> List[Dict[str, str]]:
 
 def create_url_pair(memory: Dict[str, str]):
     """
-    Create a dictionary containing the URL and date of a single `Snapchat Memory`.
+    Create dict of a memory's encoded URL and its creation date.
 
     :param memory: Dictionary of encoded media URLs.
     :type memory: Dict[str, str]
