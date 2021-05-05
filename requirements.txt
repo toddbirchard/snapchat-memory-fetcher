@@ -9,6 +9,6 @@ idna==3.1; python_version >= "3.6"
 loguru==0.5.3; python_version >= "3.5"
 multidict==5.1.0; python_version >= "3.6"
 simplejson==3.17.2; (python_version >= "2.5" and python_full_version < "3.0.0") or (python_full_version >= "3.3.0")
-typing-extensions==3.7.4.3; python_version >= "3.6"
+typing-extensions==3.10.0.0; python_version >= "3.6"
 win32-setctime==1.0.3; sys_platform == "win32" and python_version >= "3.5"
 yarl==1.6.3; python_version >= "3.6"
