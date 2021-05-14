@@ -2,7 +2,7 @@ aiofiles==0.6.0
 aiohttp==3.7.4.post0; python_version >= "3.6"
 async-timeout==3.0.1; python_full_version >= "3.5.3" and python_version >= "3.6"
 asyncio==3.4.3
-attrs==20.3.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
+attrs==21.2.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 chardet==4.0.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 colorama==0.4.4; python_version >= "3.5" and python_full_version < "3.0.0" and sys_platform == "win32" or sys_platform == "win32" and python_version >= "3.5" and python_full_version >= "3.5.0"
 idna==3.1; python_version >= "3.6"
