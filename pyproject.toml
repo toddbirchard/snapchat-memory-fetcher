@@ -20,7 +20,7 @@ aiohttp = "^3.7.4"
 asyncio = "^3.4.3"
 simplejson = "^3.17.2"
 loguru = "^0.5.3"
-aiofiles = "^0.6.0"
+aiofiles = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
